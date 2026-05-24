@@ -1,0 +1,36 @@
+"""
+pattern: hash table/bucket sort/priority queue
+time: O(n)
+memory: O(n)
+
+key idea:
+in order to achieve minimal space and time complxity we use the bucket sort algorthim where:
+the indices are the freqencies and the items are list of numbers that match the frequencies
+in order for the hasp table lenght to be equal to the len of the given list. then we pop the items until
+the desired k number are popped
+
+mistake:
+need to view the problem as the give data structure first instead of brute force in order to achieve 
+desired time complexity. writing out the problem haelps as well
+
+code:
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        freq = [[] for _ in range(len(nums) + 1)]
+        count = {}
+
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+
+        for num,rate in list(count.items()):
+            freq[rate].append(num)
+
+        res = []
+        for i in range(len(nums),0,-1):
+            for num in freq[i]:
+                res.append(num)
+                if len(res) == k:
+                    return res
+           
+
+"""

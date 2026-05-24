@@ -1,0 +1,18 @@
+"""
+pattern: hasp map
+time:o(n)
+space:o(1)
+key insight: run through given list to find indicies of num that sum up to target. Utilizing a one pass hash map
+we cheack everytimr if the target - current loop number is already in the hash map if so return the values if the keys
+which in this case is the enumerated number indices if not add the loop number and continue.
+mistake: used brute from and found a function that works but i dint used the data structure that is asked to to start
+thinking in terms of data structures and connect the patterns
+code:
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        freq = {}
+        for i,num in enumerate(nums):
+            if target - num in freq:
+                return [freq.get(target-num),i]
+            freq[num] = i
+"""
