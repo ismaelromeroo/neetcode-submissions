@@ -1,19 +1,19 @@
+from collections import defaultdict
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        cols = collections.defaultdict(set)
-        rows = collections.defaultdict(set)
-        squares = collections.defaultdict(set)
+        row = defaultdict(set)
+        column = defaultdict(set)
+        square = defaultdict(set)
 
         for i in range(9):
             for j in range(9):
-                if board[i][j] == ".":
+                if board[i][j] == '.':
                     continue
-                if (board[i][j] in rows[i] or 
-                   board[i][j] in cols[j] or 
-                   board[i][j] in squares[(i//3,j//3)]):
+                if (board[i][j] in row[i] or
+                    board[i][j] in column[j] or
+                    board[i][j] in square[(i//3,j//3)]):
                     return False
-                rows[i].add(board[i][j])
-                cols[j].add(board[i][j])
-                squares[(i//3,j//3)].add(board[i][j])
+                row[i].add(board[i][j])
+                column[j].add(board[i][j])
+                square[(i//3,j//3)].add(board[i][j])
         return True
-
